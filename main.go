@@ -28,7 +28,7 @@ func main() {
 	fmt.Println("Enter your hand: ")
 
 	for scanner.Scan() {
-		var myHand Hand
+		myHand := NewHand()
 		myInput := scanner.Text()
 		cardsParts := strings.Fields(myInput)
 
@@ -67,9 +67,9 @@ func main() {
 
 			fmt.Println(card)
 		}
-		UpdateHandArrays(&myHand)
-		UpdateRankMap(&myHand)
-		UpdateSuitMap(&myHand)
+		UpdateHandArrays(myHand)
+		UpdateRankMap(myHand)
+		UpdateSuitMap(myHand)
 
 		fmt.Println(myHand)
 	}
