@@ -67,15 +67,42 @@ func main() {
 
 			fmt.Println(card)
 		}
-		UpdateHandArrays(myHand)
-		UpdateRankMap(myHand)
-		UpdateSuitMap(myHand)
+
+		organizeHand(myHand)
+		handRanking(myHand)
 
 		fmt.Println(myHand)
 	}
 
 }
 
-// func handRanking(h Hand) string {
+func HandComparison(h1 *Hand, h2 *Hand) string {
 
-// }
+	organizeHand(h1)
+	organizeHand(h2)
+
+	// response := fmt.Sprintf("Variable string %d content", data)
+
+	if h1.HandValue > h2.HandValue {
+		return fmt.Sprintf("Hand number 1 wins with the following hand: %h and and Hand number 2 loses with the following hand %h", h1, h2)
+	}
+
+	for i := len(h1.rankArraySorted) - 1; i >= 0; i-- {
+		// Get the highest card from each hand
+		card1_rank := h1.rankArraySorted[i]
+		card2_rank := h2.rankArraySorted[i]
+
+		// What comparison do you do here?
+		if card1_rank < card2_rank {
+			return "Hand 1 wins"
+		}
+		if card2_rank > card1_rank {
+			return "Hand 2 wins"
+		}
+
+	}
+
+	return "It's a tie"
+
+}
+
